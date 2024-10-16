@@ -7,9 +7,9 @@
          manager of the camera to avoid topic serialization -->
 
     <node pkg="nodelet" type="nodelet" name="rgbd_sync" args="standalone rtabmap_sync/rgbd_sync" output="screen">
-      <remap from="rgb/image"       to="/kinect2/sd/image_ir_rect"/>
-      <remap from="depth/image"     to="/kinect2/sd/image_depth_rect"/>
-      <remap from="rgb/camera_info" to="/kinect2/sd/color_camera_info"/>
+      <remap from="rgb/image"       to="/camera/color/image_raw"/>
+      <remap from="depth/image"     to="/camera/depth/image_rect_raw"/>
+      <remap from="rgb/camera_info" to="/camera/color/camera_info"/>
       <remap from="rgbd_image"      to="rgbd_image"/> <!-- output -->
       
       <!-- Should be true for not synchronized camera topics 
