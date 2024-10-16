@@ -207,7 +207,7 @@ include_directories(
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
 
-add_executable(rtab_map_slam src/odom_tf_broadcaster.cpp)
-target_link_libraries(rtab_map_slam
+add_executable(odom_tf_broadcaster src/odom_tf_broadcaster.cpp)
+target_link_libraries(odom_tf_broadcaster
   ${catkin_LIBRARIES}
 )
