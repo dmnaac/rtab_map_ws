@@ -17,7 +17,6 @@
       <param name="approx_sync"       value="false"/> 
     </node>
     
-
     <node name="rtabmap" pkg="rtabmap_slam" type="rtabmap" output="screen" args="--delete_db_on_start">
           <param name="frame_id" type="string" value="base_link"/>
           <param name="subscribe_rgb" type="bool" value="false"/>
@@ -47,6 +46,7 @@
           <param name="Icp/MaxCorrespondenceDistance" type="string" value="0.1"/>
     </node>
 
+    <node pkg="rtab_map_slam" type="odom_tf_broadcaster" name="odom_tf_broadcaster"/>
     <node pkg="rviz" type="rviz" name="rviz" required="true" args="-d $(find rtab_map_slam)/config/rtab_map_mapping.rviz"/>
   </group>
 </launch>
