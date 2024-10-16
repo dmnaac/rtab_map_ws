@@ -14,7 +14,7 @@
       
       <!-- Should be true for not synchronized camera topics 
            (e.g., false for kinectv2, zed, realsense, true for xtion, kinect360)-->
-      <param name="approx_sync"       value="true"/> 
+      <param name="approx_sync"       value="false"/> 
     </node>
 
     <node name="rtabmap" pkg="rtabmap_slam" type="rtabmap" output="screen" args="">
@@ -26,7 +26,7 @@
           <param name="subscribe_scan" type="bool" value="true"/>
 
           <remap from="odom" to="/odom"/>
-          <remap from="scan" to="/scan"/>
+          <remap from="scan" to="/scan_master"/>
           
           <remap from="rgbd_image" to="rgbd_image"/>
 
@@ -55,7 +55,7 @@
   </group>
 
   <!-- move_base -->
-  <include file="$(find rtab_map_slam)/launch/move_base.launch"/>
+  <include file="$(find tmrobot)/launch/tmrobot_move_base.launch"/>
 
   <node pkg="rviz" type="rviz" name="rviz" required="true" args="-d $(find rtab_map_slam)/config/rtab_map_navigation.rviz"/>
 </launch>
