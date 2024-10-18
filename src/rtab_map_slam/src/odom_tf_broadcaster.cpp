@@ -3,9 +3,10 @@
 #include <geometry_msgs/TransformStamped.h>
 #include <nav_msgs/Odometry.h>
 
+tf2_ros::TransformBroadcaster broadcaster;
+
 void CallBack(const nav_msgs::Odometry::ConstPtr& msg)
 {
-    tf2_ros::TransformBroadcaster broadcaster;
     geometry_msgs::TransformStamped odom_trans;
 
     double translation_x = msg->pose.pose.position.x;
