@@ -1,0 +1,16 @@
+<launch>
+    <!-- Start Lidar Node -->
+    <include file="$(find rplidar_ros)/launch/rplidar_s1.launch"/>
+
+    <!-- Start Camera Node -->
+    <include file="$(find realsense2_camera)/launch/rs_d435i_camera.launch"/>
+
+    <!-- Start RTAB-Map Navigation Node: localization:=true -->
+    <include file="$(find rtab_map_slam)/launch/rtab_map_navigation.launch"/>
+
+    <!-- Start move_base -->
+    <include file="$(find tmrobot)/launch/tmrobot_move_base.launch"/>
+
+    <!-- Start RVIZ -->
+    <node pkg="rviz" type="rviz" name="rviz" required="true" args="-d $(find rtab_map_slam)/config/rtab_map_navigation.rviz"/>
+</launch>

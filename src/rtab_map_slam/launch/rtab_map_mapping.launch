@@ -16,18 +16,17 @@
            (e.g., false for kinectv2, zed, realsense, true for xtion, kinect360)-->
       <param name="approx_sync"       value="false"/> 
     </node>
+    
+    <node name="rtabmap" pkg="rtabmap_slam" type="rtabmap" output="screen" args="--delete_db_on_start">
+          <param name="frame_id"             type="string" value="base_link"/>
+          <param name="subscribe_rgb"        type="bool"   value="false"/>
+          <param name="subscribe_depth"      type="bool"   value="false"/>
+          <param name="subscribe_rgbd"       type="bool"   value="true"/>
+          <param name="subscribe_scan"       type="bool"   value="true"/>
+          <param name="subscribe_scan_cloud" type="bool"   value="false"/>
 
-    <node name="rtabmap" pkg="rtabmap_slam" type="rtabmap" output="screen" args="">
-          <param name="frame_id" type="string" value="base_link"/>
-          <param name="wait_for_transform" type="bool" value="true"/>
-          <param name="subscribe_rgb" type="bool" value="false"/>
-          <param name="subscribe_depth" type="bool" value="false"/>
-          <param name="subscribe_rgbd" type="bool" value="true"/>
-          <param name="subscribe_scan" type="bool" value="true"/>
-
-          <remap from="odom" to="/odom"/>
-          <remap from="scan" to="/scan_master"/>
-          
+          <remap from="odom"            to="/odom"/>
+          <remap from="scan"            to="/scan_master"/>
           <remap from="rgbd_image" to="rgbd_image"/>
 
           <param name="sync_queue_size" type="int" value="10"/>
@@ -45,17 +44,6 @@
           <!-- ICP parameters -->
           <param name="Icp/VoxelSize"                 type="string" value="0.05"/>
           <param name="Icp/MaxCorrespondenceDistance" type="string" value="0.1"/>
-
-          <!-- Localization mode -->
-          <param name="Mem/IncrementalMemory" type="string" value="false"/>
-          <!-- <param name="Mem/InitWMWithAllNodes" type="string" value="true"/> -->
-          <!-- <param name="use_action_for_goal" type="bool" value="true"/> -->
-          <remap from="grid_map" to="/map"/>
     </node>
   </group>
-
-  <!-- move_base -->
-  <include file="$(find tmrobot)/launch/tmrobot_move_base.launch"/>
-
-  <node pkg="rviz" type="rviz" name="rviz" required="true" args="-d $(find rtab_map_slam)/config/rtab_map_navigation.rviz"/>
 </launch>
